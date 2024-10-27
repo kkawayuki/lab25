@@ -1,3 +1,5 @@
+// COMSC-210 | lab 25 | Kent Kawashima
+// IDE used: Visual Studio Code
 #include <iostream>
 #include <fstream>
 #include <chrono>
@@ -24,6 +26,9 @@ auto sInsert(set<string> &);
 auto sDelete(set<string> &);
 const void printRecords(vector<string>, list<string>, set<string>);
 
+/************************************************
+ * Function: Main
+ ************************************************/
 int main()
 {
     // declare vector/string objects
@@ -31,14 +36,15 @@ int main()
     list<string> myList;
     set<string> mySet;
     
-    //printRecords function calls and formats
+    //the printRecords function calls and formats all other functions. 
     printRecords(myVec, myList, mySet);
 
     return 0;
 }
 
-// function implementations
-
+/************************************************
+ * Functions: vector
+ ************************************************/
 auto vRead(vector<string> &myVec)
 {
     string buf;
@@ -86,8 +92,9 @@ auto vDelete(vector<string> &myVec)
     return (duration.count());
 }
 
-// list operations
-
+/************************************************
+ * Functions: list
+ ************************************************/
 auto lRead(list<string> &myList)
 {
     auto start = high_resolution_clock::now();
@@ -144,8 +151,9 @@ auto lDelete(list<string> &myList)
     return (duration.count());
 }
 
-// set operations
-
+/************************************************
+ * Functions: set
+ ************************************************/
 auto sRead(set<string> &mySet)
 {
     auto start = high_resolution_clock::now();
@@ -194,13 +202,16 @@ auto sDelete(set<string> &mySet)
     return (duration.count());
 }
 
-// very important function!
+/************************************************
+ * Function: printRecords
+ ************************************************/
 const void printRecords(vector<string> myVec, list<string> myList, set<string> mySet)
 {
-    const int width = 10; //spacing on 
+    const int width = 10; //spacing on output
     cout << setw(width) << "Operation" << right << setw(width) << "Vector" << right << setw(width) << "List" << right << setw(width) << "Set\n";
     cout << right << setw(width) << "Read" << right << setw(width) << vRead(myVec) << right << setw(width) << lRead(myList) << right << setw(width) << sRead(mySet) <<"\n";
     cout << right << setw(width) << "Sort" << right << setw(width) << vSort(myVec) << right << setw(width) << lSort(myList) << right << setw(width) << sSort(mySet) <<"\n";
     cout << right << setw(width) << "Insert" << right << setw(width) << vInsert(myVec) << right << setw(width) << lInsert(myList) << right << setw(width) << sInsert(mySet) <<"\n";
     cout << right << setw(width) << "Delete" << right << setw(width) << vDelete(myVec) << right << setw(width) << lDelete(myList) << right << setw(width) << sDelete(mySet) <<"\n";
 }
+//because I'm running my code on a relatively expensive desktop PC, the ms runtime for me is very low. 
