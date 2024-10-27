@@ -22,8 +22,7 @@ auto sRead();
 auto sSort();
 auto sInsert();
 auto sDelete();
-
-void printRecords();
+const void printRecords();
 
 int main()
 {
@@ -123,9 +122,11 @@ auto lInsert(list<string> &myList)
 {
     auto start = high_resolution_clock::now();
 
-
-    auto it = 
-    myList.insert(myList.begin() + (myList.size() / 2), "TESTCODE"); //insert roughly middle element
+    auto it = myList.begin();
+    for (int i = 0; i < myList.size()%2; ++it, i++) // iterate "it" to correct location
+    {
+    }
+    myList.insert(it, "TESTCODE"); //insert roughly middle element
 
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
@@ -135,35 +136,73 @@ auto lInsert(list<string> &myList)
 
 auto lDelete(list<string> &myList)
 {
+    auto start = high_resolution_clock::now();
+
+    auto it = myList.begin();
+    for (int i = 0; i < myList.size()%2; ++it, i++) // iterate "it" to correct location
+    {
+    }
+    myList.erase(it); //delete roughly middle element
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
 // set operations
 
-auto sRead(vector<string> &mySet);
+auto sRead(set<string> &mySet)
 {
+    auto start = high_resolution_clock::now();
+
+    string buf;
+    ifstream fin("codes.txt");
+    while (getline(fin, buf))
+    {
+        mySet.insert(buf); //inserts buf if unique
+    }
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
 }
 
-auto sSort(vector<string> &mySet) // already sorted, return -1
+auto sSort(set<string> &mySet) // already sorted, return -1
 {
     return (-1);
 }
 
-auto sInsert(vector<string> &mySet)
+auto sInsert(set<string> &mySet)
 {
+    auto start = high_resolution_clock::now();
+
+    mySet.insert("TESTCODE"); //insert roughly middle element
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
-auto sDelete(vector<string> &mySet)
+
+auto sDelete(set<string> &mySet)
 {
+    auto start = high_resolution_clock::now();
+
+    auto it = mySet.begin();
+    for (int i = 0; i < mySet.size()/2; ++it, i++) // iterate "it" to correct location
+    {
+    }
+
+    mySet.erase(it); //erase near middle value
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
 // very important function!
-void printRecords()
+const void printRecords(vector<string>myVec, list<string> myList, set<string> mySet)
 {
-    // table that calls all prior functions
+    cout << vRead(myVec); 
 }
-
-/* syntax examples:
-auto start = high_resolution_clock::now()
-auto end = high_resolution_clock::now()
-auto duration = duration_cast<milliseconds>(end - start)
-duration.count() references elapsed milliseconds
-*/
