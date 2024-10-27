@@ -1,14 +1,15 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include <vector> //for vector
-#include <list> //for list
-#include <set> //for set
+#include <vector>    //for vector
+#include <list>      //for list
+#include <set>       //for set
 #include <algorithm> //for sort
+#include <iomanip> //for formatting
 using namespace std;
 using namespace std::chrono;
 
-//function prototypes
+// function prototypes
 auto vRead();
 auto vSort();
 auto vInsert();
@@ -26,101 +27,139 @@ void printRecords();
 
 int main()
 {
-    //declare vector/string objects
-    vector<string>myVec;
-    list<string>myList;
-    set<string>mySet;
+    // declare vector/string objects
+    vector<string> myVec;
+    list<string> myList;
+    set<string> mySet;
 
     printRecords();
 
     return 0;
 }
 
-//function implementations
+// function implementations
 
-auto vRead(vector<string>&myVec)
+auto vRead(vector<string> &myVec)
 {
     string buf;
     auto start = high_resolution_clock::now();
 
     ifstream fin("codes.txt");
-    while(getline(fin,buf))
-        myVec.push_back(buf); //add all elements to vec
-    
+    while (getline(fin, buf))
+        myVec.push_back(buf); // add all elements to vec
+
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start);
 
-    return(duration.count()); 
+    return (duration.count());
 }
 
-auto vSort(vector<string>&myVec)
+auto vSort(vector<string> &myVec)
 {
-    sort(myVec.begin(),myVec.end()); //sorts entire vector
+    auto start = high_resolution_clock::now();
+
+    sort(myVec.begin(), myVec.end()); // sorts entire vector
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
-auto vInsert(vector<string>&myVec)
+auto vInsert(vector<string> &myVec)
 {
-    myVec.insert(10000, "a");
+    auto start = high_resolution_clock::now();
+
+    myVec.insert(myVec.begin() + (myVec.size() / 2), "TESTCODE"); //insert roughly middle element
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
-auto vDelete(vector<string>&myVec)
+auto vDelete(vector<string> &myVec)
 {
+    auto start = high_resolution_clock::now();
 
+    myVec.erase(myVec.begin() + (myVec.size() / 2)); //erase roughly middle element
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
-//list operations
+// list operations
 
-auto lRead(list<string>&myList)
+auto lRead(list<string> &myList)
 {
+    auto start = high_resolution_clock::now();
+
     string buf;
     ifstream fin("codes.txt");
-    while(getline(fin,buf))
+    while (getline(fin, buf))
     {
-        myList.push_back(buf); //add all elements to vec
+        myList.push_back(buf); // add all elements to vec
     }
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
 }
 
-auto lSort(list<string>&myList)
+auto lSort(list<string> &myList)
 {
+    auto start = high_resolution_clock::now();
 
+    sort(myList.begin(), myList.end()); // sorts entire list
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
-auto lInsert(list<string>&myList)
+auto lInsert(list<string> &myList)
 {
+    auto start = high_resolution_clock::now();
 
+
+    auto it = 
+    myList.insert(myList.begin() + (myList.size() / 2), "TESTCODE"); //insert roughly middle element
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return (duration.count());
 }
 
-auto lDelete(list<string>&myList)
+auto lDelete(list<string> &myList)
 {
-
 }
 
-//set operations
+// set operations
 
-auto sRead(vector<string>&mySet);
+auto sRead(vector<string> &mySet);
 {
-
 }
 
-auto sSort(vector<string>&mySet) //already sorted, return -1
+auto sSort(vector<string> &mySet) // already sorted, return -1
 {
-    return(-1);
-}  
-
-auto sInsert(vector<string>&mySet){
-
+    return (-1);
 }
-auto sDelete(vector<string>&mySet)
+
+auto sInsert(vector<string> &mySet)
 {
-
+}
+auto sDelete(vector<string> &mySet)
+{
 }
 
-//very important function!
+// very important function!
 void printRecords()
 {
-    //table that calls all prior functions
+    // table that calls all prior functions
 }
-
 
 /* syntax examples:
 auto start = high_resolution_clock::now()
