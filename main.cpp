@@ -30,7 +30,8 @@ int main()
     vector<string> myVec;
     list<string> myList;
     set<string> mySet;
-
+    
+    //printRecords function calls and formats
     printRecords(myVec, myList, mySet);
 
     return 0;
@@ -196,5 +197,10 @@ auto sDelete(set<string> &mySet)
 // very important function!
 const void printRecords(vector<string> myVec, list<string> myList, set<string> mySet)
 {
-    cout << left << setw(10)<< "Operation" << "Vector" << "List" << "String";
+    const int width = 10; //spacing on 
+    cout << setw(width) << "Operation" << right << setw(width) << "Vector" << right << setw(width) << "List" << right << setw(width) << "Set\n";
+    cout << right << setw(width) << "Read" << right << setw(width) << vRead(myVec) << right << setw(width) << lRead(myList) << right << setw(width) << sRead(mySet) <<"\n";
+    cout << right << setw(width) << "Sort" << right << setw(width) << vSort(myVec) << right << setw(width) << lSort(myList) << right << setw(width) << sSort(mySet) <<"\n";
+    cout << right << setw(width) << "Insert" << right << setw(width) << vInsert(myVec) << right << setw(width) << lInsert(myList) << right << setw(width) << sInsert(mySet) <<"\n";
+    cout << right << setw(width) << "Delete" << right << setw(width) << vDelete(myVec) << right << setw(width) << lDelete(myList) << right << setw(width) << sDelete(mySet) <<"\n";
 }
