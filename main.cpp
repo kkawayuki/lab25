@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include <vector> //for vector
 #include <list> //for list
@@ -16,7 +17,7 @@ auto lSort();
 auto lInsert();
 auto lDelete();
 
-auto printRecords();
+void printRecords();
 
 int main()
 {
@@ -26,31 +27,62 @@ int main()
 
     printRecords();
 
-    auto start = high_resolution_clock::now();
-    auto end = high_resolution_clock::now();
     return 0;
-
-
 }
 
 //function implementations
 
-auto vRead()
+auto vRead(vector<string>&myVec)
+{
+    string buf;
+    auto start = high_resolution_clock::now();
+
+    ifstream fin("codes.txt");
+    while(getline(fin,buf))
+    {
+        myVec.push_back(buf); //add all elements to vec
+    }
+
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start);
+
+    return(duration.count()); 
+}
+
+auto vSort(vector<string>&myVec)
+{
+    
+}
+
+auto vInsert(vector<string>&myVec)
 {
 
 }
 
-auto vSort()
-{}
-auto vInsert(){}
-auto vDelete(){}
+auto vDelete(vector<string>&myVec)
+{
 
-auto lRead(){}
-auto lSort(){}
-auto lInsert(){}
-auto lDelete(){}
+}
 
-auto printRecords()
+//list operations
+
+auto lRead(list<string>&myList)
+{
+    string buf;
+    ifstream fin("codes.txt");
+    while(getline(fin,buf))
+    {
+        myList.push_back(buf); //add all elements to vec
+    }
+}
+
+auto lSort(list<string>&myList){return(-1)} //already sorted
+
+auto lInsert(list<string>&myList){}
+
+auto lDelete(list<string>&myList){}
+
+void printRecords()
 {
     //table that calls all prior functions
 }
